@@ -1,0 +1,161 @@
+Enable succeeded: 
+[stdout]
+995-1ubuntu2.5) over (2:8.2.3995-1ubuntu2.4) ...\r
+Preparing to unpack .../4-vim-runtime_2%3a8.2.3995-1ubuntu2.5_all.deb ...\r
+Unpacking vim-runtime (2:8.2.3995-1ubuntu2.5) over (2:8.2.3995-1ubuntu2.4) ...\r
+Preparing to unpack .../5-xxd_2%3a8.2.3995-1ubuntu2.5_amd64.deb ...\r
+Unpacking xxd (2:8.2.3995-1ubuntu2.5) over (2:8.2.3995-1ubuntu2.4) ...\r
+Preparing to unpack .../6-vim-common_2%3a8.2.3995-1ubuntu2.5_all.deb ...\r
+Unpacking vim-common (2:8.2.3995-1ubuntu2.5) over (2:8.2.3995-1ubuntu2.4) ...\r
+Preparing to unpack .../7-bind9-host_1%3a9.18.12-0ubuntu0.22.04.1_amd64.deb ...\r
+Unpacking bind9-host (1:9.18.12-0ubuntu0.22.04.1) over (1:9.18.1-1ubuntu1.3) ...\r
+Preparing to unpack .../8-bind9-dnsutils_1%3a9.18.12-0ubuntu0.22.04.1_amd64.deb ...\r
+Unpacking bind9-dnsutils (1:9.18.12-0ubuntu0.22.04.1) over (1:9.18.1-1ubuntu1.3) ...\r
+Preparing to unpack .../9-bind9-libs_1%3a9.18.12-0ubuntu0.22.04.1_amd64.deb ...\r
+Unpacking bind9-libs:amd64 (1:9.18.12-0ubuntu0.22.04.1) over (1:9.18.1-1ubuntu1.3) ...\r
+Setting up bind9-libs:amd64 (1:9.18.12-0ubuntu0.22.04.1) ...\r
+Setting up distro-info-data (0.52ubuntu0.3) ...\r
+Setting up libwbclient0:amd64 (2:4.15.13+dfsg-0ubuntu1.1) ...\r
+Setting up xxd (2:8.2.3995-1ubuntu2.5) ...\r
+Setting up vim-common (2:8.2.3995-1ubuntu2.5) ...\r
+Setting up vim-runtime (2:8.2.3995-1ubuntu2.5) ...\r
+Setting up bind9-host (1:9.18.12-0ubuntu0.22.04.1) ...\r
+Setting up vim (2:8.2.3995-1ubuntu2.5) ...\r
+Setting up vim-tiny (2:8.2.3995-1ubuntu2.5) ...\r
+Setting up bind9-dnsutils (1:9.18.12-0ubuntu0.22.04.1) ...\r
+Processing triggers for man-db (2.10.2-1) ...\r
+Processing triggers for libc-bin (2.35-0ubuntu3.1) ...\r
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+=> Downloading nvm from git to '/.nvm'
+\r=> * (HEAD detached at FETCH_HEAD)
+  master
+=> Compressing and cleaning up git repository
+
+=> Profile not found. Tried ~/.bashrc, ~/.bash_profile, ~/.zprofile, ~/.zshrc, and ~/.profile.
+=> Create one of them and run this script again
+   OR
+=> Append the following lines to the correct file yourself:
+
+export NVM_DIR=\"$HOME/.nvm\"
+[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"  # This loads nvm
+
+=> Close and reopen your terminal to start using nvm or run the following to use it now:
+
+export NVM_DIR=\"$HOME/.nvm\"
+[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"  # This loads nvm
+Downloading and installing node v16.14.2...
+Now using node v16.14.2 (npm v8.5.0)
+Creating default alias: default -> 16.14.2 (-> v16.14.2 *)
+
+added 237 packages, and audited 238 packages in 15s
+
+30 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+added 18 packages, and audited 19 packages in 2s
+
+2 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+added 1755 packages, and audited 1756 packages in 2m
+
+118 packages are looking for funding
+  run `npm fund` for details
+
+45 vulnerabilities (1 low, 13 moderate, 23 high, 8 critical)
+
+To address issues that do not require attention, run:
+  npm audit fix
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+
+Run `npm audit` for details.
+
+> spring-petclinic-angular@11.2.11 build
+> ng build
+
+
+Initial Chunk Files | Names                |      Size
+vendor-es5.js       | vendor               |   6.30 MB
+vendor-es2018.js    | vendor               |   5.32 MB
+styles.css          | styles               |   1.15 MB
+polyfills-es5.js    | polyfills-es5        | 675.21 kB
+main-es5.js         | main                 | 429.64 kB
+scripts.js          | scripts              | 410.89 kB
+main-es2018.js      | main                 | 375.63 kB
+polyfills-es2018.js | polyfills            | 141.34 kB
+runtime-es2018.js   | runtime              |   6.16 kB
+runtime-es5.js      | runtime              |   6.16 kB
+
+| Initial ES5 Total    |   8.94 MB
+| Initial ES2018 Total |   7.38 MB
+
+Build at: 2023-04-08T21:29:47.259Z - Hash: 2756d2bbf3644b1ad3a2 - Time: 59780ms
+
+[stderr]
+cated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+npm WARN deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+npm WARN deprecated chokidar@2.1.8: Chokidar 2 does not receive security updates since 2019. Upgrade to chokidar 3 with 15x fewer dependencies
+npm WARN deprecated chokidar@2.1.8: Chokidar 2 does not receive security updates since 2019. Upgrade to chokidar 3 with 15x fewer dependencies
+npm WARN deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+npm WARN deprecated core-js@2.6.12: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+npm WARN deprecated core-js-pure@3.19.1: core-js-pure@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js-pure.
+npm WARN deprecated core-js@3.8.3: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+Warning: Using differential loading with targets ES5 and ES2016 or higher may
+cause problems. Browsers with support for ES2015 will load the ES2016+ scripts
+referenced with script[type=\"module\"] but they may not support ES2016+ syntax.
+Compiling @angular/core : es2015 as esm2015
+Compiling @angular/common : es2015 as esm2015
+Compiling @angular/platform-browser : es2015 as esm2015
+Compiling @angular/platform-browser-dynamic : es2015 as esm2015
+Compiling @angular/common/http : es2015 as esm2015
+Compiling @angular/router : es2015 as esm2015
+Compiling @angular/cdk/keycodes : es2015 as esm2015
+Compiling @angular/cdk/platform : es2015 as esm2015
+Compiling @angular/cdk/observers : es2015 as esm2015
+Compiling @angular/cdk/a11y : es2015 as esm2015
+Compiling @angular/cdk/bidi : es2015 as esm2015
+Compiling @angular/animations : es2015 as esm2015
+Compiling @angular/animations/browser : es2015 as esm2015
+Compiling @angular/platform-browser/animations : es2015 as esm2015
+Compiling @angular/forms : es2015 as esm2015
+Compiling @angular/material/core : es2015 as esm2015
+Compiling @angular/material-moment-adapter : es2015 as esm2015
+Compiling @angular/cdk/collections : es2015 as esm2015
+Compiling @angular/cdk/scrolling : es2015 as esm2015
+Compiling @angular/cdk/portal : es2015 as esm2015
+Compiling @angular/cdk/overlay : es2015 as esm2015
+Compiling @angular/material/button : es2015 as esm2015
+Compiling @angular/material/dialog : es2015 as esm2015
+Compiling @angular/material/form-field : es2015 as esm2015
+Compiling @angular/cdk/text-field : es2015 as esm2015
+Compiling @angular/material/input : es2015 as esm2015
+Compiling @angular/material/datepicker : es2015 as esm2015
+Compiling @angular/material/select : es2015 as esm2015
+- Generating browser application bundles...
+✔ Browser application bundle generation complete.
+- Generating ES5 bundles for differential loading...
+✔ ES5 bundle generation complete.
+- Copying assets...
+✔ Copying assets complete.
+- Generating index html...
+✔ Index html generation complete.
+
+Warning: /var/lib/waagent/run-command/download/0/spring-petclinic-angular/src/app/specialties/specialty.service.ts depends on 'rxjs/internal/operators'. CommonJS or AMD dependencies can cause optimization bailouts.
+For more info see: https://angular.io/guide/build#configuring-commonjs-dependencies
+
+

@@ -6,21 +6,18 @@ az group create \
     --name "Test_group" \
     --location "northeurope"
 
-az network public-ip create \
-    --resource-group "Test_group" \
-    --name "Pub_IP" \
-    --version "IPv4"
-
 az vm create \
     --name "Test_VM" \
     --resource-group "Test_group" \
     --authentication-type "ssh" \
     --generate-ssh-keys \
     --image "Ubuntu2204" \
-    --size "Standard_B1s"
+    --size "Standard_B2s"
 
 az vm run-command invoke \
-    --command-id "Test_command" \
+    --name "Test_VM" \
+    --command-id "RunShellScript" \
     --resource-group "Test_group" \
-    --scripts "SCRIPTSHERE" \
-    --parameters "PARAMSHERE"
+    --scripts "@./backend.sh" \
+    --parameters "10.0.2.5" "9000" "9000" \
+    --debug
