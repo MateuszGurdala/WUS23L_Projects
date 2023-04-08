@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #Source support functions
-. ./scripts.sh
+. ./utils.sh
 
 if [ "$#" -ne 1 ]; then
     echo "Illegal number of parameters"
@@ -57,13 +57,11 @@ echo $SECURITY_GROUPS | while read group; do
             --priority $RULE_PRIORITY \
             --resource-group $RESOURCE_GROUP \
             --access $RULE_ACCESS \
-            --protocol $RULE_PROTOCOL
-        #TODO: Uncomment when valid values are in config file
-        # --destination-address-prefixes "$DESTINATION_ADDRESS_PREFIXES" \
-        # --destination-port-ranges "$DESTINATION_PORT_RANGES" \
-        # --source-address-prefixes "$SOURCE_ADDRESS_PREFIXES" \
-        # --source-port-ranges "$SOURCE_PORT_RANGES"
-
+            --protocol $RULE_PROTOCOL \
+            --destination-address-prefixes "$DESTINATION_ADDRESS_PREFIXES" \
+            --destination-port-ranges "$DESTINATION_PORT_RANGES" \
+            --source-address-prefixes "$SOURCE_ADDRESS_PREFIXES" \
+            --source-port-ranges "$SOURCE_PORT_RANGES"
     done
 done
 
@@ -82,7 +80,8 @@ echo $VIRTUAL_MACHINES | while read vm; do
         --public-ip-address $VM_PUBLIC_IP \
         --private-ip-address $VM_PRIVATE_IP \
         --size $VM_SIZE \
-        --vnet-name $VNET_NAME 
-        #--public-ip-sku Standard #Recommended?
+        --vnet-name $VNET_NAME
+    #--public-ip-sku Standard #Recommended?
 
+    
 done

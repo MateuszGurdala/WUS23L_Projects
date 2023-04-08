@@ -41,7 +41,8 @@
 				"public": "GatewayIP",
 				"private": "10.0.0.4"
 			},
-			"size": "Standard_B1s"
+			"size": "Standard_B1s",
+			"scripts": [{}]
 		}
 	]
 }
