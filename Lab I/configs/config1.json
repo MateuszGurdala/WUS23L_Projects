@@ -13,7 +13,7 @@
 	},
 	"security_groups": [
 		{
-			"name": "Group1",
+			"name": "FrontendNSG",
 			"rules": [
 				{
 					"name": "Rule1",
@@ -26,13 +26,13 @@
 					},
 					"destination": {
 						"address_prefixes": "'*'",
-						"port_ranges": 9000
+						"port_ranges": "'*'"
 					}
 				}
 			]
 		},
 		{
-			"name": "Group2",
+			"name": "BackendNSG",
 			"rules": [
 				{
 					"name": "Rule1",
@@ -45,13 +45,13 @@
 					},
 					"destination": {
 						"address_prefixes": "'*'",
-						"port_ranges": 9000
+						"port_ranges": "'*'"
 					}
 				}
 			]
 		},
 		{
-			"name": "Group3",
+			"name": "BDNSG",
 			"rules": [
 				{
 					"name": "Rule1",
@@ -64,7 +64,7 @@
 					},
 					"destination": {
 						"address_prefixes": "'*'",
-						"port_ranges": 3306
+						"port_ranges": "'*'"
 					}
 				}
 			]
@@ -74,17 +74,17 @@
 		{
 			"name": "SubnetFront",
 			"address_prefixes": "10.0.1.0/24",
-			"network_security_group_name": "Group1"
+			"network_security_group_name": "FrontendNSG"
 		},
 		{
 			"name": "SubnetBack",
 			"address_prefixes": "10.0.2.0/24",
-			"network_security_group_name": "Group2"
+			"network_security_group_name": "BackendNSG"
 		},
 		{
 			"name": "SubnetDB",
 			"address_prefixes": "10.0.3.0/24",
-			"network_security_group_name": "Group3"
+			"network_security_group_name": "BDNSG"
 		}
 	],
 	"virtual_machines": [
@@ -96,7 +96,7 @@
 				"public": "GatewayIP",
 				"private": "10.0.1.4"
 			},
-			"size": "Standard_B1s"
+			"size": "Standard_B2s"
 		},
 		{
 			"name": "Backend",

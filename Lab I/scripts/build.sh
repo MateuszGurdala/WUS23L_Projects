@@ -83,6 +83,7 @@ for VM in $VIRTUAL_MACHINES; do
             --authentication-type "ssh" \
             --generate-ssh-keys \
             --image $VM_IMAGE \
+            --nsg "" \
             --public-ip-address $VM_PUBLIC_IP \
             --private-ip-address $VM_PRIVATE_IP \
             --size $VM_SIZE \
@@ -97,6 +98,7 @@ for VM in $VIRTUAL_MACHINES; do
             --authentication-type "ssh" \
             --generate-ssh-keys \
             --image $VM_IMAGE \
+            --nsg "" \
             --public-ip-address "" \
             --private-ip-address $VM_PRIVATE_IP \
             --size $VM_SIZE \
@@ -116,5 +118,6 @@ for COMMAND in $COMMANDS; do
         --name $VM_NAME \
         --resource-group $RESOURCE_GROUP \
         --scripts $SCRIPT_FILE \
-        --parameters $PARAMS
+        --parameters $PARAMS \
+        --debug
 done
