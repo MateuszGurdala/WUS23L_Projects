@@ -20,27 +20,3 @@ export VIRTUAL_MACHINES="$(jq -c '.virtual_machines[]' "$CONFIG")"
 
 #Commands array
 export COMMANDS="$(jq -c '.commands[]' "$CONFIG")"
-
-# echo $SECURITY_GROUPS | while read group; do
-#     echo $group | jq -c '.rules[]' | while read rule; do
-#         get_rule_data $rule
-#         echo $RULE_NAME
-#         echo $RULE_PRIORITY
-#         echo $RULE_ACCESS
-#         echo $RULE_PROTOCOL
-#         echo $SOURCE_ADDRESS_PREFIXES
-#         echo $SOURCE_PORT_RANGES
-#         echo $DESTINATION_ADDRESS_PREFIXES
-#         echo $DESTINATION_PORT_RANGES
-#     done
-# done
-
-# echo $VIRTUAL_MACHINES | while read vm; do
-#     get_vm_data $vm
-#     echo $VM_NAME
-#     echo $VM_IMAGE
-#     echo $SECURITY_GROUP_NAME
-#     echo $VM_PUBLIC_IP
-#     echo $VM_PRIVATE_IP
-#     echo $VM_SIZE
-# done

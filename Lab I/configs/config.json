@@ -46,7 +46,6 @@
 	],
 	"commands": [
 		{
-			"id": "Command1",
 			"vm_name": "VirtualMachineOne",
 			"script_file": "../somefile.sh",
 			"params": "'value1' 'value2'"

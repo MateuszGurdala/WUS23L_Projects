@@ -37,7 +37,6 @@ get_vm_data() {
 }
 
 get_command_data() {
-    export COMMAND_ID="$(echo $1 | jq -r '.id')"
     export VM_NAME="$(echo $1 | jq -r '.vm_name')"
     export SCRIPT_FILE="$(echo $1 | jq -r '.script_file')"
     export SCRIPT_PARAMS="$(echo $1 | jq -r '.params')"

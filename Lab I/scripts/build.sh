@@ -84,7 +84,7 @@ echo $COMMANDS | while read COMMAND; do
     get_command_data $COMMAND
 
     az vm run-command invoke \
-        --command-id $COMMAND_ID \
+        --command-id "RunShellScript" \
         --name $VM_NAME \
         --resource-group $RESOURCE_GROUP \
         --scripts $SCRIPT_FILE \
