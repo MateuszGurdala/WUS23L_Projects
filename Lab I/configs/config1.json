@@ -103,7 +103,7 @@
 			"image": "UbuntuLTS",
 			"subnet": "SubnetBack",
 			"ip_address": {
-				"public": "''",
+				"public": "",
 				"private": "10.0.2.5"
 			},
 			"size": "Standard_B1s"
@@ -113,7 +113,7 @@
 			"image": "UbuntuLTS",
 			"subnet": "SubnetDB",
 			"ip_address": {
-				"public": "''",
+				"public": "",
 				"private": "10.0.3.6"
 			},
 			"size": "Standard_B1s"
@@ -123,17 +123,41 @@
 		{
 			"vm_name": "Front",
 			"script_file": "@../deploy/front.sh",
-			"params": "'10.0.0.5' '9000' '9000'"
+			"params": [
+				{
+					"value": "10.0.2.5"
+				},
+				{
+					"value": "9000"
+				},
+				{
+					"value": "9000"
+				}
+			]
 		},
 		{
 			"vm_name": "Backend",
 			"script_file": "@../deploy/backend.sh",
-			"params": "'10.0.0.6' '3306' '9000'"
+			"params": [
+				{
+					"value": "10.0.3.6"
+				},
+				{
+					"value": "3306"
+				},
+				{
+					"value": "9000"
+				}
+			]
 		},
 		{
 			"vm_name": "DB",
 			"script_file": "@../deploy/database.sh",
-			"params": "'3306'"
+			"params": [
+				{
+					"value": "3306"
+				}
+			]
 		}
 	]
 }

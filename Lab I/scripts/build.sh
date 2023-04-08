@@ -76,17 +76,33 @@ for VM in $VIRTUAL_MACHINES; do
 
     get_vm_data $VM
 
-    az vm create \
-        --name $VM_NAME \
-        --resource-group $RESOURCE_GROUP \
-        --authentication-type "ssh" \
-        --generate-ssh-keys \
-        --image $VM_IMAGE \
-        --public-ip-address $VM_PUBLIC_IP \
-        --private-ip-address $VM_PRIVATE_IP \
-        --size $VM_SIZE \
-        --subnet $VM_SUBNET \
-        --vnet-name $VNET_NAME
+    if [ "$VM_PUBLIC_IP" ]; then
+        az vm create \
+            --name $VM_NAME \
+            --resource-group $RESOURCE_GROUP \
+            --authentication-type "ssh" \
+            --generate-ssh-keys \
+            --image $VM_IMAGE \
+            --public-ip-address $VM_PUBLIC_IP \
+            --private-ip-address $VM_PRIVATE_IP \
+            --size $VM_SIZE \
+            --subnet $VM_SUBNET \
+            --vnet-name $VNET_NAME
+    fi
+
+    if [ ! "$VM_PUBLIC_IP" ]; then
+        az vm create \
+            --name $VM_NAME \
+            --resource-group $RESOURCE_GROUP \
+            --authentication-type "ssh" \
+            --generate-ssh-keys \
+            --image $VM_IMAGE \
+            --public-ip-address "" \
+            --private-ip-address $VM_PRIVATE_IP \
+            --size $VM_SIZE \
+            --subnet $VM_SUBNET \
+            --vnet-name $VNET_NAME
+    fi
     #--public-ip-sku Standard #Recommended?
 done
 
@@ -100,5 +116,5 @@ for COMMAND in $COMMANDS; do
         --name $VM_NAME \
         --resource-group $RESOURCE_GROUP \
         --scripts $SCRIPT_FILE \
-        --parameters $SCRIPT_PARAMS
+        --parameters $PARAMS
 done

@@ -13,7 +13,6 @@ get_config_file() {
         exit 1
         ;;
     esac
-    echo $CONFIG
 }
 
 get_group_name() {
@@ -50,5 +49,12 @@ get_vm_data() {
 get_command_data() {
     export VM_NAME="$(echo $1 | jq -r '.vm_name')"
     export SCRIPT_FILE="$(echo $1 | jq -r '.script_file')"
-    export SCRIPT_PARAMS="$(echo $1 | jq -r '.params')"
+
+    PARAMS_ARRAY="$(echo $1 | jq -c '.params[]')"
+    PARAMS=""
+    for PARAM in $PARAMS_ARRAY; do
+        PARAM="$(echo $PARAM | jq -c '.value')"
+        PARAMS="${PARAMS} ${PARAM}"
+    done
+    export PARAMS
 }
