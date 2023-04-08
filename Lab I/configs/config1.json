@@ -70,34 +70,51 @@
 			]
 		}
 	],
+	"subnets": [
+		{
+			"name": "SubnetFront",
+			"address_prefixes": "10.0.1.0/24",
+			"network_security_group_name": "Group1"
+		},
+		{
+			"name": "SubnetBack",
+			"address_prefixes": "10.0.2.0/24",
+			"network_security_group_name": "Group2"
+		},
+		{
+			"name": "SubnetDB",
+			"address_prefixes": "10.0.3.0/24",
+			"network_security_group_name": "Group3"
+		}
+	],
 	"virtual_machines": [
 		{
 			"name": "Front",
 			"image": "UbuntuLTS",
-			"network_security_group_name": "Group1",
+			"subnet": "SubnetFront",
 			"ip_address": {
 				"public": "GatewayIP",
-				"private": "10.0.0.4"
+				"private": "10.0.1.4"
 			},
 			"size": "Standard_B1s"
 		},
 		{
 			"name": "Backend",
 			"image": "UbuntuLTS",
-			"network_security_group_name": "Group2",
+			"subnet": "SubnetBack",
 			"ip_address": {
-				"public": "GatewayIP",
-				"private": "10.0.0.5"
+				"public": "''",
+				"private": "10.0.2.5"
 			},
 			"size": "Standard_B1s"
 		},
 		{
 			"name": "DB",
 			"image": "UbuntuLTS",
-			"network_security_group_name": "Group3",
+			"subnet": "SubnetDB",
 			"ip_address": {
-				"public": "GatewayIP",
-				"private": "10.0.0.6"
+				"public": "''",
+				"private": "10.0.3.6"
 			},
 			"size": "Standard_B1s"
 		}

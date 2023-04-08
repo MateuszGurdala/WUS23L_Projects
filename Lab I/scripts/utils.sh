@@ -5,11 +5,15 @@ get_config_file() {
     0)
         export CONFIG="../configs/config.json"
         ;;
+    1)
+        export CONFIG="../configs/config1.json"
+        ;;
     *)
         echo "Invalid argument"
         exit 1
         ;;
     esac
+    echo $CONFIG
 }
 
 get_group_name() {
@@ -27,12 +31,19 @@ get_rule_data() {
     export DESTINATION_PORT_RANGES="$(echo $1 | jq -r '.destination.port_ranges')"
 }
 
+get_subnet_data() {
+    export SUBNET_NAME="$(echo $1 | jq -r '.name')"
+    export SUBNET_ADDRESS_PREFIXES="$(echo $1 | jq -r '.address_prefixes')"
+    export SUBNET_SECURITY_GROUP_NAME="$(echo $1 | jq -r '.network_security_group_name')"
+}
+
 get_vm_data() {
     export VM_NAME="$(echo $1 | jq -r '.name')"
     export VM_IMAGE="$(echo $1 | jq -r '.image')"
     export SECURITY_GROUP_NAME="$(echo $1 | jq -r '.network_security_group_name')"
     export VM_PUBLIC_IP="$(echo $1 | jq -r '.ip_address.public')"
     export VM_PRIVATE_IP="$(echo $1 | jq -r '.ip_address.private')"
+    export VM_SUBNET="$(echo $1 | jq -r '.subnet')"
     export VM_SIZE="$(echo $1 | jq -r '.size')"
 }
 

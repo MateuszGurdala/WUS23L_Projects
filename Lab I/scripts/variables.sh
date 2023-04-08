@@ -15,6 +15,9 @@ export PUBLIC_IP_VERSION="$(jq -r '.public_ip.version' "$CONFIG")"
 #Security groups array
 export SECURITY_GROUPS="$(jq -c '.security_groups[]' "$CONFIG")"
 
+#Subnets array
+export SUBNETS="$(jq -c '.subnets[]' "$CONFIG")"
+
 #Virtual machines array
 export VIRTUAL_MACHINES="$(jq -c '.virtual_machines[]' "$CONFIG")"
 

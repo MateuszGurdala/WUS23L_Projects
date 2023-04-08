@@ -33,7 +33,7 @@ az network vnet create \
     --address-prefix $VNET_ADDRESS_PREFIX
 
 #Create network security groups with networking rules
-echo $SECURITY_GROUPS | while read GROUP; do
+for GROUP in $SECURITY_GROUPS; do
 
     get_group_name $GROUP
 
@@ -59,8 +59,20 @@ echo $SECURITY_GROUPS | while read GROUP; do
     done
 done
 
+for SUBNET in $SUBNETS; do
+
+    get_subnet_data $SUBNET
+
+    az network vnet subnet create \
+        --name $SUBNET_NAME \
+        --resource-group $RESOURCE_GROUP \
+        --vnet-name $VNET_NAME \
+        --address-prefixes $SUBNET_ADDRESS_PREFIXES \
+        --network-security-group $SUBNET_SECURITY_GROUP_NAME
+done
+
 #Create virtual machines and run deploy scripts
-echo $VIRTUAL_MACHINES | while read VM; do
+for VM in $VIRTUAL_MACHINES; do
 
     get_vm_data $VM
 
@@ -70,16 +82,16 @@ echo $VIRTUAL_MACHINES | while read VM; do
         --authentication-type "ssh" \
         --generate-ssh-keys \
         --image $VM_IMAGE \
-        --nsg $SECURITY_GROUP_NAME \
         --public-ip-address $VM_PUBLIC_IP \
         --private-ip-address $VM_PRIVATE_IP \
         --size $VM_SIZE \
+        --subnet $VM_SUBNET \
         --vnet-name $VNET_NAME
     #--public-ip-sku Standard #Recommended?
 done
 
 #Run deployment comamnds
-echo $COMMANDS | while read COMMAND; do
+for COMMAND in $COMMANDS; do
 
     get_command_data $COMMAND
 
