@@ -1,0 +1,122 @@
+{
+	"resource_group": {
+		"name": "WUS_LAB_1",
+		"location": "northeurope"
+	},
+	"virtual_network": {
+		"name": "VNet",
+		"address_prefix": "10.0.0.0/16"
+	},
+	"public_ip": {
+		"name": "GatewayIP",
+		"version": "IPv4"
+	},
+	"security_groups": [
+		{
+			"name": "Group1",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": 9000
+					}
+				}
+			]
+		},
+		{
+			"name": "Group2",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": 9000
+					}
+				}
+			]
+		},
+		{
+			"name": "Group3",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": 3306
+					}
+				}
+			]
+		}
+	],
+	"virtual_machines": [
+		{
+			"name": "Front",
+			"image": "UbuntuLTS",
+			"network_security_group_name": "Group1",
+			"ip_address": {
+				"public": "GatewayIP",
+				"private": "10.0.0.4"
+			},
+			"size": "Standard_B1s"
+		},
+		{
+			"name": "Backend",
+			"image": "UbuntuLTS",
+			"network_security_group_name": "Group2",
+			"ip_address": {
+				"public": "GatewayIP",
+				"private": "10.0.0.5"
+			},
+			"size": "Standard_B1s"
+		},
+		{
+			"name": "DB",
+			"image": "UbuntuLTS",
+			"network_security_group_name": "Group3",
+			"ip_address": {
+				"public": "GatewayIP",
+				"private": "10.0.0.6"
+			},
+			"size": "Standard_B1s"
+		}
+	],
+	"commands": [
+		{
+			"vm_name": "Front",
+			"script_file": "@../deploy/front.sh",
+			"params": "'10.0.0.5' '9000' '9000'"
+		},
+		{
+			"vm_name": "Backend",
+			"script_file": "@../deploy/backend.sh",
+			"params": "'10.0.0.6' '3306' '9000'"
+		},
+		{
+			"vm_name": "DB",
+			"script_file": "@../deploy/database.sh",
+			"params": "'3306'"
+		}
+	]
+}
