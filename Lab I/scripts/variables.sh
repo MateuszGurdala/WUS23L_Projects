@@ -18,6 +18,9 @@ export SECURITY_GROUPS="$(jq -c '.security_groups[]' "$CONFIG")"
 #Virtual machines array
 export VIRTUAL_MACHINES="$(jq -c '.virtual_machines[]' "$CONFIG")"
 
+#Commands array
+export COMMANDS="$(jq -c '.commands[]' "$CONFIG")"
+
 # echo $SECURITY_GROUPS | while read group; do
 #     echo $group | jq -c '.rules[]' | while read rule; do
 #         get_rule_data $rule

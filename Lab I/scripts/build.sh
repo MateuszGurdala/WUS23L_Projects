@@ -3,17 +3,11 @@
 #Source support functions
 . ./utils.sh
 
-if [ "$#" -ne 1 ]; then
-    echo "Illegal number of parameters"
-    exit 1
-fi
-
 #Install required packages
 #sh ./install_tools.sh
 
 #Get config file variables
-CONFIG="$1"
-export CONFIG
+get_config_file $1
 
 #Source config file variables
 . ./variables.sh
@@ -39,17 +33,17 @@ az network vnet create \
     --address-prefix $VNET_ADDRESS_PREFIX
 
 #Create network security groups with networking rules
-echo $SECURITY_GROUPS | while read group; do
+echo $SECURITY_GROUPS | while read GROUP; do
 
-    get_group_name $group
+    get_group_name $GROUP
 
     az network nsg create \
         --resource-group $RESOURCE_GROUP \
         --name $SECURITY_GROUP_NAME
 
-    echo $group | jq -c '.rules[]' | while read rule; do
+    echo $GROUP | jq -c '.rules[]' | while read RULE; do
 
-        get_rule_data $rule
+        get_rule_data $RULE
 
         az network nsg rule create \
             --name $RULE_NAME \
@@ -66,9 +60,9 @@ echo $SECURITY_GROUPS | while read group; do
 done
 
 #Create virtual machines and run deploy scripts
-echo $VIRTUAL_MACHINES | while read vm; do
+echo $VIRTUAL_MACHINES | while read VM; do
 
-    get_vm_data $vm
+    get_vm_data $VM
 
     az vm create \
         --name $VM_NAME \
@@ -82,6 +76,17 @@ echo $VIRTUAL_MACHINES | while read vm; do
         --size $VM_SIZE \
         --vnet-name $VNET_NAME
     #--public-ip-sku Standard #Recommended?
+done
 
-    
+#Run deployment comamnds
+echo $COMMANDS | while read COMMAND; do
+
+    get_command_data $COMMAND
+
+    az vm run-command invoke \
+        --command-id $COMMAND_ID \
+        --name $VM_NAME \
+        --resource-group $RESOURCE_GROUP \
+        --scripts $SCRIPT_FILE \
+        --parameters $SCRIPT_PARAMS
 done
