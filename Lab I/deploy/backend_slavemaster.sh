@@ -3,7 +3,9 @@
 #Arguments
 database_ip=$1
 database_port=$2
-backend_port=$3
+database_slave_ip = $3
+database_slave_port = $4
+backend_port=$5
 
 #Update denviroment
 sudo apt update
@@ -23,11 +25,11 @@ git clone https://github.com/spring-petclinic/spring-petclinic-rest.git
 cd spring-petclinic-rest
 
 #Change database ip, database port and backend port
-sudo sed -i "s/localhost/$database_ip/g" src/main/resources/application-mysql.properties
-sudo sed -i "s/3306/$database_port/g" src/main/resources/application-mysql.properties
+sudo sed -i "s/localhost:3306/${database_ip}:${database_port},${database_slave_ip}:${database_slave_port}/" src/main/resources/application-mysql.properties
 sudo sed -i "s/9966/$backend_port/g" src/main/resources/application.properties
 sudo sed -i "s/active=hsqldb/active=mysql/g" src/main/resources/application.properties
 sudo sed -i 's/username=.*/username=pc/' src/main/resources/application-mysql.properties
 sudo sed -i 's/password=.*/password=petclinic/' src/main/resources/application-mysql.properties
+
 #Run backend
 sudo ./mvnw spring-boot:run &
