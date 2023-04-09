@@ -76,7 +76,7 @@ for SUBNET in $SUBNETS; do
         --network-security-group $SUBNET_SECURITY_GROUP_NAME
 done
 
-#Create virtual machines and run deploy scripts
+#Create virtual machines
 for VM in $VIRTUAL_MACHINES; do
 
     get_vm_data $VM
@@ -112,7 +112,7 @@ for VM in $VIRTUAL_MACHINES; do
     fi
 done
 
-#Run deployment comamnds
+#Run deploy scripts
 for COMMAND in $COMMANDS; do
 
     get_command_data $COMMAND

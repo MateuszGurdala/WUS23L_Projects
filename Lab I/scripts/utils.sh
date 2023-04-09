@@ -2,9 +2,6 @@
 
 get_config_file() {
     case "$1" in
-    0)
-        export CONFIG="../configs/config.json"
-        ;;
     1)
         export CONFIG="../configs/config1.json"
         ;;
@@ -58,13 +55,16 @@ get_command_data() {
     PARAMS_ARRAY="$(echo $1 | jq -c '.params[]')"
     PARAMS=""
     for PARAM in $PARAMS_ARRAY; do
+
         VALUE="$(echo $PARAM | jq -r '.value')"
+
         if [ ! "$VALUE" ]; then
             COMMAND="$(echo $PARAM | jq -r '.command')"
-            VALUE="$(sh ./commands/$COMMAND)"
+            VALUE="$(sh ./param_commands/$COMMAND)"
         else
             VALUE="$(echo $PARAM | jq -c '.value')"
         fi
+
         PARAMS="${PARAMS} ${VALUE}"
     done
     export PARAMS
