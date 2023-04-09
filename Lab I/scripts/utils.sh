@@ -19,6 +19,11 @@ get_group_name() {
     export SECURITY_GROUP_NAME="$(echo $1 | jq -r '.name')"
 }
 
+get_public_ip_data() {
+    export PUBLIC_IP_NAME="$(echo $1 | jq -r '.name')"
+    export PUBLIC_IP_VERSION="$(echo $1 | jq -r '.version')"
+}
+
 get_rule_data() {
     export RULE_NAME="$(echo $1 | jq -r '.name')"
     export RULE_PRIORITY="$(echo $1 | jq -r '.priority')"
@@ -53,8 +58,14 @@ get_command_data() {
     PARAMS_ARRAY="$(echo $1 | jq -c '.params[]')"
     PARAMS=""
     for PARAM in $PARAMS_ARRAY; do
-        PARAM="$(echo $PARAM | jq -c '.value')"
-        PARAMS="${PARAMS} ${PARAM}"
+        VALUE="$(echo $PARAM | jq -r '.value')"
+        if [ ! "$VALUE" ]; then
+            COMMAND="$(echo $PARAM | jq -r '.command')"
+            VALUE="$(sh ./commands/$COMMAND)"
+        else
+            VALUE="$(echo $PARAM | jq -c '.value')"
+        fi
+        PARAMS="${PARAMS} ${VALUE}"
     done
     export PARAMS
 }

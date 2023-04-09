@@ -7,10 +7,16 @@
 		"name": "VNet",
 		"address_prefix": "10.0.0.0/16"
 	},
-	"public_ip": {
-		"name": "GatewayIP",
-		"version": "IPv4"
-	},
+	"public_ips": [
+		{
+			"name": "FrontendIP",
+			"version": "IPv4"
+		},
+		{
+			"name": "BackendIP",
+			"version": "IPv4"
+		}
+	],
 	"security_groups": [
 		{
 			"name": "FrontendNSG",
@@ -93,7 +99,7 @@
 			"image": "UbuntuLTS",
 			"subnet": "SubnetFront",
 			"ip_address": {
-				"public": "GatewayIP",
+				"public": "FrontendIP",
 				"private": "10.0.1.4"
 			},
 			"size": "Standard_B2s"
@@ -103,7 +109,7 @@
 			"image": "UbuntuLTS",
 			"subnet": "SubnetBack",
 			"ip_address": {
-				"public": "",
+				"public": "BackendIP",
 				"private": "10.0.2.5"
 			},
 			"size": "Standard_B1s"
@@ -125,7 +131,8 @@
 			"script_file": "@../deploy/front.sh",
 			"params": [
 				{
-					"value": "10.0.2.5"
+					"value": "",
+					"command": "get_public_ip.sh"
 				},
 				{
 					"value": "9000"

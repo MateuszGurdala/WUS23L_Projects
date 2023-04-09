@@ -21,10 +21,15 @@ az group create \
     --location $RESOURCE_LOCATION
 
 #Create public IPv4 address
-az network public-ip create \
-    --resource-group $RESOURCE_GROUP \
-    --name $PUBLIC_IP_NAME \
-    --version $PUBLIC_IP_VERSION #Set default as IPv4?
+for IP in $PUBLIC_IPS; do
+
+    get_public_ip_data $IP
+
+    az network public-ip create \
+        --resource-group $RESOURCE_GROUP \
+        --name $PUBLIC_IP_NAME \
+        --version $PUBLIC_IP_VERSION #Set default as IPv4?
+done
 
 #Create a virtual network for VM's
 az network vnet create \
@@ -105,7 +110,6 @@ for VM in $VIRTUAL_MACHINES; do
             --subnet $VM_SUBNET \
             --vnet-name $VNET_NAME
     fi
-    #--public-ip-sku Standard #Recommended?
 done
 
 #Run deployment comamnds
@@ -119,5 +123,5 @@ for COMMAND in $COMMANDS; do
         --resource-group $RESOURCE_GROUP \
         --scripts $SCRIPT_FILE \
         --parameters $PARAMS \
-        --debug
+        --no-wait
 done
