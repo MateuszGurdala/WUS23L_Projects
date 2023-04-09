@@ -9,7 +9,7 @@ sudo apt install -y mysql-server wget
 
 echo "[mysqld]" | sudo tee -a /etc/mysql/my.cnf
 echo "port=$MASTER_PORT" | sudo tee -a /etc/mysql/my.cnf
-echo "bind-address = localhost" | sudo tee -a /etc/mysql/my.cnf
+# echo "bind-address = localhost" | sudo tee -a /etc/mysql/my.cnf
 echo "server-id = 1" | sudo tee -a /etc/mysql/my.cnf
 sudo sed -i "s/127.0.0.1/0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo sed -i "s/3306/$MASTER_PORT/" /etc/mysql/mysql.conf.d/mysqld.cnf
