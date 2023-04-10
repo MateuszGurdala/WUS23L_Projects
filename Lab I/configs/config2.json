@@ -200,7 +200,7 @@
 			"params": [
 				{
 					"value": "",
-					"command": "get_public_ip.sh"
+					"command": "get_public_ip_load.sh"
 				},
 				{
 					"value": "9000"
