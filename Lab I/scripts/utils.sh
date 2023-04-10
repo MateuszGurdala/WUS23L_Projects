@@ -8,6 +8,9 @@ get_config_file() {
     2)
         export CONFIG="../configs/config2.json"
         ;;
+    3)
+        export CONFIG="../configs/config3.json"
+        ;;        
     *)
         echo "Invalid argument"
         exit 1

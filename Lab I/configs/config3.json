@@ -1,0 +1,226 @@
+{
+	"resource_group": {
+		"name": "WUS_LAB_1",
+		"location": "northeurope"
+	},
+	"virtual_network": {
+		"name": "VNet",
+		"address_prefix": "10.0.0.0/16"
+	},
+	"public_ips": [
+		{
+			"name": "FrontendIP",
+			"version": "IPv4"
+		},
+		{
+			"name": "BackendIP",
+			"version": "IPv4"
+		}
+	],
+	"security_groups": [
+		{
+			"name": "FrontendNSG",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					}
+				}
+			]
+		},
+		{
+			"name": "BackendNSG",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					}
+				}
+			]
+		},
+		{
+			"name": "BDMasterNSG",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					}
+				}
+			]
+		},
+        {
+			"name": "BDSlaveNSG",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					}
+				}
+			]
+		}
+	],
+	"subnets": [
+		{
+			"name": "SubnetFront",
+			"address_prefixes": "10.0.1.0/24",
+			"network_security_group_name": "FrontendNSG"
+		},
+		{
+			"name": "SubnetBack",
+			"address_prefixes": "10.0.2.0/24",
+			"network_security_group_name": "BackendNSG"
+		},
+		{
+			"name": "SubnetDBMaster",
+			"address_prefixes": "10.0.3.0/24",
+			"network_security_group_name": "BDMasterNSG"
+		},
+        {
+			"name": "SubnetDBSlave",
+			"address_prefixes": "10.0.3.0/24",
+			"network_security_group_name": "BDSlaveNSG"
+		}
+	],
+	"virtual_machines": [
+		{
+			"name": "Front",
+			"image": "UbuntuLTS",
+			"subnet": "SubnetFront",
+			"ip_address": {
+				"public": "FrontendIP",
+				"private": "10.0.1.4"
+			},
+			"size": "Standard_B2s"
+		},
+		{
+			"name": "Backend",
+			"image": "UbuntuLTS",
+			"subnet": "SubnetBack",
+			"ip_address": {
+				"public": "BackendIP",
+				"private": "10.0.2.5"
+			},
+			"size": "Standard_B1s"
+		},
+		{
+			"name": "DB_master",
+			"image": "UbuntuLTS",
+			"subnet": "SubnetDB",
+			"ip_address": {
+				"public": "",
+				"private": "10.0.3.6"
+			},
+			"size": "Standard_B1s"
+		},
+        {
+			"name": "DB_salve",
+			"image": "UbuntuLTS",
+			"subnet": "SubnetDB",
+			"ip_address": {
+				"public": "",
+				"private": "10.0.4.7"
+			},
+			"size": "Standard_B1s"
+		}
+	],
+	"commands": [
+		{
+			"vm_name": "Front",
+			"script_file": "@../deploy/front.sh",
+			"params": [
+				{
+					"value": "",
+					"command": "get_public_ip.sh"
+				},
+				{
+					"value": "9000"
+				},
+				{
+					"value": "9000"
+				}
+			]
+		},
+		{
+			"vm_name": "Backend",
+			"script_file": "@../deploy/backend_slavemaster.sh",
+			"params": [
+				{
+					"value": "10.0.3.6"
+				},
+				{
+					"value": "3306"
+				},
+				{
+					"value": "10.0.4.7"
+				},
+                {
+					"value": "3305"
+				},
+                {
+					"value": "9000"
+				}
+                
+			]
+		},
+		{
+			"vm_name": "DBMaster",
+			"script_file": "@../deploy/database.sh",
+			"params": [
+				{
+					"value": "3306"
+				}
+			]
+		},
+        {
+			"vm_name": "DBSlave",
+			"script_file": "@../deploy/database_slave.sh",
+			"params": [
+				{
+					"value": "3305"
+				},
+                {
+					"value": "3306"
+				},
+                {
+					"value": "10.0.3.6"
+				}
+			]
+		}
+	]
+}
