@@ -1,15 +1,11 @@
 #!/bin/bash
 
-if [ "$#" -ne 3 ]; then
-    echo "Error: arguments not specified" >&2
-    exit 1
-fi
-
 BALANCER_PORT="$1"
 BACKEND_1_IP_PORT="$2"
 BACKEND_2_IP_PORT="$3"
 
-sudo apt update -y
+sudo apt update
+sudo apt upgrade -y
 sudo apt install -y nginx
 
 cd /home

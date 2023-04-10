@@ -123,5 +123,5 @@ for COMMAND in $COMMANDS; do
         --resource-group $RESOURCE_GROUP \
         --scripts $SCRIPT_FILE \
         --parameters $PARAMS \
-        --no-wait
+        # --no-wait -> can't run multiple comamnds on same VM
 done
