@@ -56,25 +56,6 @@
 				}
 			]
 		},
-        {
-			"name": "Backend2NSG",
-			"rules": [
-				{
-					"name": "Rule1",
-					"priority": 100,
-					"access": "Allow",
-					"protocol": "Tcp",
-					"source": {
-						"address_prefixes": "'*'",
-						"port_ranges": "'*'"
-					},
-					"destination": {
-						"address_prefixes": "'*'",
-						"port_ranges": "'*'"
-					}
-				}
-			]
-		},
 		{
 			"name": "BDNSG",
 			"rules": [
@@ -131,11 +112,6 @@
 			"network_security_group_name": "BDNSG"
 		},
 		{
-			"name": "SubnetBack2",
-			"address_prefixes": "10.0.4.0/24",
-			"network_security_group_name": "Backend2NSG"
-		},
-		{
 			"name": "SubnetLoad",
 			"address_prefixes": "10.0.5.0/24",
 			"network_security_group_name": "LoadNSG"
@@ -150,7 +126,7 @@
 				"public": "FrontEndIP",
 				"private": "10.0.1.4"
 			},
-			"size": "Standard_B2s"
+			"size": "Standard_DS1_v2"
 		},
 		{
 			"name": "Loadbalancer",
@@ -169,16 +145,6 @@
 			"ip_address": {
 				"public": "",
 				"private": "10.0.2.5"
-			},
-			"size": "Standard_B1s"
-		},
-		{
-			"name": "Backend2",
-			"image": "UbuntuLTS",
-			"subnet": "SubnetBack2",
-			"ip_address": {
-				"public": "",
-				"private": "10.0.4.7"
 			},
 			"size": "Standard_B1s"
 		},
@@ -225,7 +191,7 @@
 			]
 		},
 		{
-			"vm_name": "Backend2",
+			"vm_name": "Backend1",
 			"script_file": "@../deploy/backend.sh",
 			"params": [
 				{
@@ -250,7 +216,7 @@
 					"value": "10.0.2.5:9000"
 				},
 				{
-					"value": "10.0.4.7:8999"
+					"value": "10.0.2.5:8999"
 				}
 			]
 		},
