@@ -4,7 +4,7 @@
 		"location": "northeurope"
 	},
 	"virtual_network": {
-		"name": "VNet",
+		"name": "VNet3",
 		"address_prefix": "10.0.0.0/16"
 	},
 	"public_ips": [
@@ -57,26 +57,7 @@
 			]
 		},
 		{
-			"name": "BDMasterNSG",
-			"rules": [
-				{
-					"name": "Rule1",
-					"priority": 100,
-					"access": "Allow",
-					"protocol": "Tcp",
-					"source": {
-						"address_prefixes": "'*'",
-						"port_ranges": "'*'"
-					},
-					"destination": {
-						"address_prefixes": "'*'",
-						"port_ranges": "'*'"
-					}
-				}
-			]
-		},
-        {
-			"name": "BDSlaveNSG",
+			"name": "BDNSG",
 			"rules": [
 				{
 					"name": "Rule1",
@@ -107,14 +88,9 @@
 			"network_security_group_name": "BackendNSG"
 		},
 		{
-			"name": "SubnetDBMaster",
+			"name": "SubnetDB",
 			"address_prefixes": "10.0.3.0/24",
-			"network_security_group_name": "BDMasterNSG"
-		},
-        {
-			"name": "SubnetDBSlave",
-			"address_prefixes": "10.0.3.0/24",
-			"network_security_group_name": "BDSlaveNSG"
+			"network_security_group_name": "BDNSG"
 		}
 	],
 	"virtual_machines": [
@@ -126,7 +102,7 @@
 				"public": "FrontendIP",
 				"private": "10.0.1.4"
 			},
-			"size": "Standard_B2s"
+			"size": "Standard_DS1_v2"
 		},
 		{
 			"name": "Backend",
@@ -149,12 +125,12 @@
 			"size": "Standard_B1s"
 		},
         {
-			"name": "DB_salve",
+			"name": "DB_slave",
 			"image": "UbuntuLTS",
 			"subnet": "SubnetDB",
 			"ip_address": {
 				"public": "",
-				"private": "10.0.4.7"
+				"private": "10.0.3.7"
 			},
 			"size": "Standard_B1s"
 		}
@@ -199,7 +175,7 @@
 			]
 		},
 		{
-			"vm_name": "DBMaster",
+			"vm_name": "DB_master",
 			"script_file": "@../deploy/database.sh",
 			"params": [
 				{
@@ -208,7 +184,7 @@
 			]
 		},
         {
-			"vm_name": "DBSlave",
+			"vm_name": "DB_slave",
 			"script_file": "@../deploy/database_slave.sh",
 			"params": [
 				{
