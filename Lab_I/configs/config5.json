@@ -213,7 +213,22 @@
 					"command": "get_public_ip_load.sh"
 				},
 				{
+					"value": "9001"
+				},
+				{
 					"value": "9000"
+				}
+			]
+		},
+		{
+			"vm_name": "Front",
+			"script_file": "@../deploy/frontend_reverse_proxy.sh",
+			"params": [
+				{
+					"value": "9001"
+				},
+				{
+					"value": "10.0.5.8"
 				},
 				{
 					"value": "9000"
@@ -276,6 +291,15 @@
 				},
 				{
 					"value": "10.0.4.7:9000"
+				}
+			]
+		},
+		{
+			"vm_name": "DB",
+			"script_file": "@../deploy/database.sh",
+			"params": [
+				{
+					"value": "3306"
 				}
 			]
 		},
