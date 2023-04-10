@@ -11,10 +11,6 @@
 		{
 			"name": "FrontendIP",
 			"version": "IPv4"
-		},
-		{
-			"name": "BackendIP",
-			"version": "IPv4"
 		}
 	],
 	"security_groups": [
@@ -109,7 +105,7 @@
 			"image": "UbuntuLTS",
 			"subnet": "SubnetBack",
 			"ip_address": {
-				"public": "BackendIP",
+				"public": "",
 				"private": "10.0.2.5"
 			},
 			"size": "Standard_B1s"
@@ -124,7 +120,7 @@
 			},
 			"size": "Standard_B1s"
 		},
-        {
+		{
 			"name": "DB_slave",
 			"image": "UbuntuLTS",
 			"subnet": "SubnetDB",
@@ -145,7 +141,22 @@
 					"command": "get_public_ip.sh"
 				},
 				{
+					"value": "9001"
+				},
+				{
 					"value": "9000"
+				}
+			]
+		},
+		{
+			"vm_name": "Front",
+			"script_file": "@../deploy/frontend_reverse_proxy.sh",
+			"params": [
+				{
+					"value": "9001"
+				},
+				{
+					"value": "10.0.2.5"
 				},
 				{
 					"value": "9000"
@@ -165,13 +176,12 @@
 				{
 					"value": "10.0.3.7"
 				},
-                {
+				{
 					"value": "3305"
 				},
-                {
+				{
 					"value": "9000"
 				}
-                
 			]
 		},
 		{
@@ -183,17 +193,17 @@
 				}
 			]
 		},
-        {
+		{
 			"vm_name": "DB_slave",
 			"script_file": "@../deploy/database_slave.sh",
 			"params": [
 				{
 					"value": "3305"
 				},
-                {
+				{
 					"value": "3306"
 				},
-                {
+				{
 					"value": "10.0.3.6"
 				}
 			]
