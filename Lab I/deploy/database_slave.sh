@@ -12,7 +12,7 @@ sudo apt install -y mysql-server wget
 echo "[mysqld]" | sudo tee -a /etc/mysql/my.cnf
 echo "port=$SLAVE_PORT" | sudo tee -a /etc/mysql/my.cnf
 #echo "bind-address = localhost" | sudo tee -a /etc/mysql/my.cnf
-echo "server-id = 1" | sudo tee -a /etc/mysql/my.cnf
+echo "server-id = 2" | sudo tee -a /etc/mysql/my.cnf
 sudo sed -i "s/127.0.0.1/0.0.0.0/" /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo sed -i "s/3306/$SLAVE_PORT/" /etc/mysql/mysql.conf.d/mysqld.cnf
 
@@ -41,14 +41,15 @@ wget "https://raw.githubusercontent.com/spring-petclinic/spring-petclinic-rest/m
 sudo mysql < initDB.sql
 sudo mysql --database=petclinic < populateDB.sql
 
-echo "{$MASTER_ADDRESS}:{$MASTER_PORT}"
-
-sudo sed -i "s/.*server-id.*/server-id = 1/" /etc/mysql/mysql.conf.d/mysqld.cnf
+sudo sed -i "s/.*server-id.*/server-id = 2/" /etc/mysql/mysql.conf.d/mysqld.cnf
 sudo sed -i "s/.*log_bin.*/log_bin = \\/var\\/log\\/mysql\\/mysql-bi.log/" /etc/mysql/mysql.conf.d/mysqld.cnf
-
-sudo mysql -e "CHANGE MASTER TO MASTER_HOST='$MASTER_ADDRESS', MASTER_USER='replicate', MASTER_PASSWORD='passwd', MASTER_PORT=$MASTER_PORT;"
-sudo mysql -e "FLUSH PRIVILEGES;"
-
-
 sudo service mysql restart
 sudo /etc/init.d/mysql start
+
+sudo mysql -v -e "CHANGE MASTER TO MASTER_HOST='$MASTER_ADDRESS', MASTER_USER='replicate', MASTER_PASSWORD='passwd', MASTER_PORT=$MASTER_PORT;"
+#sudo mysql -e "FLUSH PRIVILEGES;"
+sudo mysql -v -e "UNLOCK TABLES;"
+sudo mysql -v -e "START SLAVE;"
+
+
+
