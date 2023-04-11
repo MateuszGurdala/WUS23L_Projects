@@ -15,9 +15,11 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 16.14.2
 # nvm install v18.15.0 -> needs to be downgraded
 
+#Install angular runtime
 npm install -g @angular/cli@latest
 npm install angular-http-server
 
+#Install frontend app
 git clone https://github.com/spring-petclinic/spring-petclinic-angular.git
 cd spring-petclinic-angular
 npm install
@@ -26,6 +28,6 @@ npm install
 sed -i "s/localhost/$SERVER_IP/g" src/environments/environment.ts src/environments/environment.prod.ts
 sed -i "s/9966/$SERVER_PORT/g" src/environments/environment.ts src/environments/environment.prod.ts
 
+#Build and deployment
 npm run build
-
 npx angular-http-server --path ./dist -p $FRONTEND_PORT &

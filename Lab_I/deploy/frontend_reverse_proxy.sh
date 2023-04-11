@@ -7,10 +7,10 @@ BACKEND_PORT=$3
 sudo apt update
 sudo apt upgrade -y
 
-#Install squid
+#Install nginx
 sudo apt install -y nginx
 
-# Create an Nginx configuration file in the current directory
+# Create an Nginx reverse-proxy configuration
 cat >loadbalancer.conf <<EOL
 server {
     listen $PROXY_PORT;

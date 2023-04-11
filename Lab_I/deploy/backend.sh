@@ -29,5 +29,6 @@ sudo sed -i "s/9966/$backend_port/g" src/main/resources/application.properties
 sudo sed -i "s/active=hsqldb/active=mysql/g" src/main/resources/application.properties
 sudo sed -i 's/username=.*/username=pc/' src/main/resources/application-mysql.properties
 sudo sed -i 's/password=.*/password=petclinic/' src/main/resources/application-mysql.properties
+
 #Run backend
 sudo ./mvnw spring-boot:run &

@@ -4,27 +4,31 @@ RESOURCE_GROUP="Test_group"
 
 az login
 
-# az group create \
-#     --name "$RESOURCE_GROUP" \
-#     --location "northeurope"
-
-# az network public-ip create \
-#     --resource-group $RESOURCE_GROUP \
-#     --name "VM_IP" \
-#     --version "IPv4" #Set default as IPv4?
-
 # az vm create \
-#     --name "Test_VM" \
-#     --resource-group "$RESOURCE_GROUP" \
+#     --name "Backend" \
+#     --resource-group "WUS_LAB_1" \
 #     --authentication-type "ssh" \
 #     --generate-ssh-keys \
-#     --image "Ubuntu2204" \
+#     --image "UbuntuLTS" \
 #     --size "Standard_B2s" \
 #     --public-ip-address "VM_IP"
 
+az vm create \
+    --name "Backend" \
+    --resource-group "WUS_LAB_1" \
+    --authentication-type "ssh" \
+    --generate-ssh-keys \
+    --image "UbuntuLTS" \
+    --nsg "" \
+    --public-ip-address "" \
+    --private-ip-address "10.0.2.5" \
+    --size "Standard_DS1_v2" \
+    --subnet "SubnetBack" \
+    --vnet-name "VNet3"
+
 az vm run-command invoke \
-    --name "Test_VM" \
+    --name "Backend" \
     --command-id "RunShellScript" \
-    --resource-group "$RESOURCE_GROUP" \
-    --scripts "@./proxy.sh" \
-    --parameters "3306"
+    --resource-group "WUS_LAB_1" \
+    --scripts "@./backend_slavemaster.sh" \
+    --parameters "10.0.3.6" "3306" "10.0.3.7" "3305" "9000"

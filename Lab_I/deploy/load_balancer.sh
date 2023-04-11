@@ -18,7 +18,7 @@ upstream backend {
 }
 
 server {
-    listen      $BALANCER_PORT;
+    listen $BALANCER_PORT;
 
     location /petclinic/api {
         proxy_pass http://backend;
