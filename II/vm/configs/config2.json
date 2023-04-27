@@ -1,0 +1,196 @@
+{
+	"resource_group": {
+		"name": "WUS_LAB_1",
+		"location": "northeurope"
+	},
+	"virtual_network": {
+		"name": "VNet2",
+		"address_prefix": "10.0.0.0/16"
+	},
+	"public_ips": [
+		{
+			"name": "FrontendIP",
+			"version": "IPv4"
+		},
+		{
+			"name": "LoadbalancerIP",
+			"version": "IPv4"
+		}
+	],
+	"security_groups": [
+		{
+			"name": "FrontendNSG",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					}
+				}
+			]
+		},
+		{
+			"name": "Backend1NSG",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					}
+				}
+			]
+		},
+		{
+			"name": "Backend2NSG",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					}
+				}
+			]
+		},
+		{
+			"name": "BDNSG",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					}
+				}
+			]
+		},
+		{
+			"name": "LoadNSG",
+			"rules": [
+				{
+					"name": "Rule1",
+					"priority": 100,
+					"access": "Allow",
+					"protocol": "Tcp",
+					"source": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					},
+					"destination": {
+						"address_prefixes": "'*'",
+						"port_ranges": "'*'"
+					}
+				}
+			]
+		}
+	],
+	"subnets": [
+		{
+			"name": "SubnetFront",
+			"address_prefixes": "10.0.1.0/24",
+			"network_security_group_name": "FrontendNSG"
+		},
+		{
+			"name": "SubnetBack1",
+			"address_prefixes": "10.0.2.0/24",
+			"network_security_group_name": "Backend1NSG"
+		},
+		{
+			"name": "SubnetBack2",
+			"address_prefixes": "10.0.4.0/24",
+			"network_security_group_name": "Backend2NSG"
+		},
+		{
+			"name": "SubnetDB",
+			"address_prefixes": "10.0.3.0/24",
+			"network_security_group_name": "BDNSG"
+		},
+		{
+			"name": "SubnetLoad",
+			"address_prefixes": "10.0.5.0/24",
+			"network_security_group_name": "LoadNSG"
+		}
+	],
+	"virtual_machines": [
+		{
+			"name": "Front",
+			"image": "UbuntuLTS",
+			"subnet": "SubnetFront",
+			"ip_address": {
+				"public": "FrontEndIP",
+				"private": "10.0.1.4"
+			},
+			"size": "Standard_DS1_v2"
+		},
+		{
+			"name": "Loadbalancer",
+			"image": "UbuntuLTS",
+			"subnet": "SubnetLoad",
+			"ip_address": {
+				"public": "LoadbalancerIP",
+				"private": "10.0.5.8"
+			},
+			"size": "Standard_DS1_v2"
+		},
+		{
+			"name": "Backend1",
+			"image": "UbuntuLTS",
+			"subnet": "SubnetBack1",
+			"ip_address": {
+				"public": "",
+				"private": "10.0.2.5"
+			},
+			"size": "Standard_B1s"
+		},
+		{
+			"name": "Backend2",
+			"image": "UbuntuLTS",
+			"subnet": "SubnetBack2",
+			"ip_address": {
+				"public": "",
+				"private": "10.0.4.7"
+			},
+			"size": "Standard_B1s"
+		},
+		{
+			"name": "DB",
+			"image": "UbuntuLTS",
+			"subnet": "SubnetDB",
+			"ip_address": {
+				"public": "",
+				"private": "10.0.3.6"
+			},
+			"size": "Standard_B1s"
+		}
+	]
+}
