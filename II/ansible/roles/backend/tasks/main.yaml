@@ -1,0 +1,4 @@
+---
+- name: Deploy backend from script
+  ansible.builtin.script:
+    cmd: backend.sh {{ params.database_ip }} {{ params.database_port }} {{ params.backend_port }}
