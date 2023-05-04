@@ -13,4 +13,4 @@ az login
 . ./update_inventory.sh
 
 cd ..
-ansible-playbook -i inventory/"$INVENTORY_FILE" configs/"$PLAYBOOK_FILE"
+ansible-playbook -i inventory/"$INVENTORY_FILE" configs/"$PLAYBOOK_FILE" -vvv
