@@ -18,6 +18,7 @@ nvm install 16.14.2
 #Install angular runtime
 npm install -g @angular/cli@latest
 npm install angular-http-server
+npm install -g npx
 
 #Install frontend app
 git clone https://github.com/spring-petclinic/spring-petclinic-angular.git
@@ -30,4 +31,5 @@ sed -i "s/9966/$SERVER_PORT/g" src/environments/environment.ts src/environments/
 
 #Build and deployment
 npm run build
-npx angular-http-server --path ./dist -p $FRONTEND_PORT &
+# npx angular-http-server --path ./dist -p $FRONTEND_PORT &
+ng serve --host 0.0.0.0 --port $FRONTEND_PORT

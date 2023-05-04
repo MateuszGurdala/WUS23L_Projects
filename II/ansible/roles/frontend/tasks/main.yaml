@@ -1,0 +1,9 @@
+---
+- name: Deploy frontend from script
+  ansible.builtin.script:
+    cmd: front.sh {{ params.proxy_ip }} {{ params.proxy_port }} {{ params.frontend_port }}
+
+- name: Run angular server
+  ansible.builtin.command:
+    cmd: /home/mateusz/.nvm/versions/node/v16.14.2/bin/ng serve --host 0.0.0.0 --port {{ params.frontend_port }}
+    chdir: /home/{{ ansible_user }}/spring-petclinic-angular
