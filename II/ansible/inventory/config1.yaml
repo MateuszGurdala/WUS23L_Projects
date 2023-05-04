@@ -1,13 +1,10 @@
 all:
   hosts:
     front:
-      name: Frontend
       ansible_host: 10.0.1.4
     back:
-      name: Backend
       ansible_host: 10.0.2.5
     db:
-      name: DB
       ansible_host: 10.0.3.6
   vars:
     ansible_user: mateusz

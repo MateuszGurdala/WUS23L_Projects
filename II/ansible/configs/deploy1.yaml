@@ -2,11 +2,14 @@
 - hosts: all
   become: true
 
-- hosts: Frontend
-  roles: frontend
+- hosts: front
+  roles:
+    - ../roles/frontend
 
-- hosts: Backend
-  roles: backend
+- hosts: back
+  roles:
+    - ../roles/backend
 
-- hosts: DB
-  roles: database
+- hosts: db
+  roles:
+    - ../roles/database
