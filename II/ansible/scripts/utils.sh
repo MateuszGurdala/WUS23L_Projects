@@ -79,7 +79,7 @@ inventory_set_user() {
 
 inventory_set_public_ip() {
     DOMAIN="$1@$2"
-    yq -i '.all.vars.ansible_ssh_common_args = "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -W %h:%p -i ~/.ssh/id_rsa '$DOMAIN'\""' $3
+    yq -i '.all.vars.ansible_ssh_common_args = "-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand=\"ssh -o StrictHostKeyChecking=no -W %h:%p -i ~/.ssh/id_rsa '$DOMAIN'\""' $3
 }
 
 inventory_set_ansible_host() {
