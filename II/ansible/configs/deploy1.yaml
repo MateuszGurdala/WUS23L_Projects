@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+
+- hosts: Frontend
+  roles: frontend
+
+- hosts: Backend
+  roles: backend
+
+- hosts: DB
+  roles: database

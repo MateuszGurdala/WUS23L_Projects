@@ -1,6 +1,6 @@
 {
 	"resource_group": {
-		"name": "WUS_LAB_1",
+		"name": "WUS",
 		"location": "northeurope"
 	},
 	"virtual_network": {

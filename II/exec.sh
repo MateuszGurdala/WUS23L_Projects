@@ -1,9 +1,28 @@
 #!/bin/bash
 
-if [ "$#" -ne 1 ]; then
-    echo "Illegal number of parameters"
-    exit 1
+if [ "$#" == 1 ]; then
+    if [ "$1" == "installtools" ]; then
+        echo "Installing tools"
+        sh ./install_tools.sh
+        exit 0
+    fi
 fi
 
-cd ./vm/scripts
-sh ./build.sh $1
+if [ "$#" == 3 ]; then
+    if [ "$1" == "deploy" ]; then
+        if [ "$2" == "vm" ]; then
+            echo "Deploying Virtual Machines"
+            cd ./vm/scripts
+            sh ./build.sh $3
+            exit 0
+        elif [ "$2" == "ansible" ]; then
+            echo "Running Ansible Playbook"
+            cd ./ansible/scripts
+            sh ./build.sh $3
+            exit 0
+        fi
+    fi
+fi
+
+echo "Invalid arguments"
+exit 1

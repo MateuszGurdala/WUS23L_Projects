@@ -15,7 +15,7 @@ get_config_file() {
         export CONFIG="../configs/config5.json"
         ;;
     *)
-        echo "Invalid argument"
+        echo "Invalid config number"
         exit 1
         ;;
     esac

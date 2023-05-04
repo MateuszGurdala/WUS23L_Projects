@@ -19,6 +19,3 @@ export SUBNETS="$(jq -c '.subnets[]' "$CONFIG")"
 
 #Virtual machines array
 export VIRTUAL_MACHINES="$(jq -c '.virtual_machines[]' "$CONFIG")"
-
-#Commands array
-export COMMANDS="$(jq -c '.commands[]' "$CONFIG")"

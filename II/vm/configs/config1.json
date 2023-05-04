@@ -91,7 +91,7 @@
 	],
 	"virtual_machines": [
 		{
-			"name": "Front",
+			"name": "Frontend",
 			"image": "UbuntuLTS",
 			"subnet": "SubnetFront",
 			"ip_address": {

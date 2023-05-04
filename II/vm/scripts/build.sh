@@ -3,9 +3,6 @@
 #Source support functions
 . ./utils.sh
 
-#Install required packages
-sh ./install_tools.sh
-
 #Get config file variables
 get_config_file $1
 
