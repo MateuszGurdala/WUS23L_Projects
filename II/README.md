@@ -3,7 +3,7 @@
 ### To install necessary packages (Azure CLI, Ansible, jq, yq):
 
 ```bash
-sudo sh ./install_tools.sh
+sudo bash ./install_tools.sh
 ```
 
 ## Deployment
@@ -11,11 +11,11 @@ sudo sh ./install_tools.sh
 ### To deploy infrastructure on Azure:
 
 ```bash
-sudo sh ./exec.sh deploy azure <confing number>
+sudo bash ./exec.sh deploy azure <confing number>
 ```
 
 ### To deploy software using Ansible:
 
 ```bash
-sudo sh ./exec.sh deploy ansible <confing number>
+sudo bash ./exec.sh deploy ansible <confing number>
 ```
