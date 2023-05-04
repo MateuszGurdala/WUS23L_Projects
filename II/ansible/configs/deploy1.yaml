@@ -6,9 +6,11 @@
   roles:
     - ../roles/frontend
     - ../roles/reverseproxy
+
 - hosts: back
   roles:
     - ../roles/backend
-# - hosts: db
-#   roles:
-#     - ../roles/database
+
+- hosts: db
+  roles:
+    - ../roles/database
