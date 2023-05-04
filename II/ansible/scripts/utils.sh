@@ -1,39 +1,30 @@
 #!/bin/bash
 
-get_vm_config_file() {
+get_config_files() {
     case "$1" in
     1)
         export VM_CONFIG="../../vm/configs/config1.json"
+        export INVENTORY="../inventory/config1.yaml"
+        export INVENTORY_FILE="config1.yaml"
+        export PLAYBOOK_FILE="deploy1.yaml"
         ;;
     2)
         export VM_CONFIG="../../vm/configs/config2.json"
+        export INVENTORY="../inventory/config2.yaml"
+        export INVENTORY_FILE="config2.json"
+        export PLAYBOOK_FILE="deploy2.yaml"
         ;;
     3)
         export VM_CONFIG="../../vm/configs/config3.json"
+        export INVENTORY="../inventory/config3.yaml"
+        export INVENTORY_FILE="config3.json"
+        export PLAYBOOK_FILE="deploy3.yaml"
         ;;
     5)
         export VM_CONFIG="../../vm/configs/config5.json"
-        ;;
-    *)
-        echo "Invalid config number"
-        exit 1
-        ;;
-    esac
-}
-
-get_ansible_config_file() {
-    case "$1" in
-    1)
-        export INVENTORY="../inventory/config1.yaml"
-        ;;
-    2)
-        export INVENTORY="../inventory/config2.yaml"
-        ;;
-    3)
-        export INVENTORY="../inventory/config3.yaml"
-        ;;
-    5)
         export INVENTORY="../inventory/config5.yaml"
+        export INVENTORY_FILE="config5.json"
+        export PLAYBOOK_FILE="deploy5.yaml"
         ;;
     *)
         echo "Invalid config number"
