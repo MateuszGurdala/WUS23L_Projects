@@ -1,16 +1,8 @@
 #!/bin/bash
 
-if [ "$#" == 1 ]; then
-    if [ "$1" == "installtools" ]; then
-        echo "Installing tools"
-        sh ./install_tools.sh
-        exit 0
-    fi
-fi
-
 if [ "$#" == 3 ]; then
     if [ "$1" == "deploy" ]; then
-        if [ "$2" == "vm" ]; then
+        if [ "$2" == "azure" ]; then
             echo "Deploying Virtual Machines"
             cd ./vm/scripts
             sh ./build.sh $3
