@@ -13,4 +13,12 @@ for VM in $VIRTUAL_MACHINES; do
     fi
 
     inventory_set_ansible_host $HOST $VM_PRIVATE_IP $INVENTORY
+
+    for PARAM in $VM_PARAMS; do
+
+        get_param_data $PARAM
+
+        inventory_add_param $HOST $PARAM_NAME $PARAM_VALUE $INVENTORY
+
+    done
 done

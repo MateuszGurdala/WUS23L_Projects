@@ -37,6 +37,7 @@ get_vm_data() {
     export VM_NAME="$(echo $1 | jq -r '.name')"
     export VM_PUBLIC_IP="$(echo $1 | jq -r '.ip_address.public')"
     export VM_PRIVATE_IP="$(echo $1 | jq -r '.ip_address.private')"
+    export VM_PARAMS="$(echo $1 | jq -c '.params[]')"
 }
 
 get_host() {
@@ -61,6 +62,17 @@ get_public_ip() {
     export IP="$(az network public-ip show --resource-group "$1" --name "$2" --query ipAddress --output tsv)"
 }
 
+get_param_data() {
+    export PARAM_NAME="$(echo $1 | jq -r '.name')"
+    export PARAM_VALUE="$(echo $1 | jq -r '.value')"
+
+    if [ ! "$PARAM_VALUE" ]; then
+        COMMAND="$(echo $1 | jq -r '.command')"
+        PARAM_VALUE="$(sh ./param_commands/$COMMAND)"
+    fi
+
+}
+
 inventory_set_user() {
     yq -i '.all.vars.ansible_user = '"\"$1\"" $2
 }
@@ -73,4 +85,8 @@ inventory_set_public_ip() {
 inventory_set_ansible_host() {
     yq -i '.all.hosts.'"\""$1"\""'.ansible_host = '"\""$2"\"" $3
 
+}
+
+inventory_add_param() {
+    yq -i '.all.hosts.'"$1"'.params += {'"\""$2"\""': '"\""$3"\""'}' $4
 }

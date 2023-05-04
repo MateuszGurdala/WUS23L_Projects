@@ -98,7 +98,30 @@
 				"public": "FrontendIP",
 				"private": "10.0.1.4"
 			},
-			"size": "Standard_B2s"
+			"size": "Standard_B2s",
+			"params": [
+				{
+					"name": "proxy_ip",
+					"value": "",
+					"command": "get_public_ip.sh"
+				},
+				{
+					"name": "proxy_port",
+					"value": "9001"
+				},
+				{
+					"name": "frontend_port",
+					"value": "9000"
+				},
+				{
+					"name": "backend_ip",
+					"value": "10.0.2.5"
+				},
+				{
+					"name": "backend_port",
+					"value": "9000"
+				}
+			]
 		},
 		{
 			"name": "Backend",
@@ -108,7 +131,21 @@
 				"public": "",
 				"private": "10.0.2.5"
 			},
-			"size": "Standard_B1s"
+			"size": "Standard_B1s",
+			"params": [
+				{
+					"name": "database_ip",
+					"value": "10.0.3.6"
+				},
+				{
+					"name": "database_port",
+					"value": "3306"
+				},
+				{
+					"name": "backend_port",
+					"value": "9000"
+				}
+			]
 		},
 		{
 			"name": "DB",
@@ -118,7 +155,13 @@
 				"public": "",
 				"private": "10.0.3.6"
 			},
-			"size": "Standard_B1s"
+			"size": "Standard_B1s",
+			"params": [
+				{
+					"name": "database_port",
+					"value": "3306"
+				}
+			]
 		}
 	]
 }
