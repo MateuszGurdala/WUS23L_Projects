@@ -5,8 +5,7 @@
 - hosts: front
   roles:
     - ../roles/frontend
-#     - ../roles/reverseproxy
-
+    - ../roles/reverseproxy
 # - hosts: back
 #   roles:
 #     - ../roles/backend
