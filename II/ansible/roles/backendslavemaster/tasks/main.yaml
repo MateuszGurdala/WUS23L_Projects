@@ -2,5 +2,3 @@
 - name: Deploy backend slave master from script
   ansible.builtin.script:
     cmd: backend_slavemaster.sh {{ params.database_ip }} {{ params.database_port }} {{ params.slave_ip }} {{ params.slave_port }} {{ params.backend_port }}
-  async: 600
-  poll: 5

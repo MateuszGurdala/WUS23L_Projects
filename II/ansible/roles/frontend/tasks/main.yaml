@@ -2,5 +2,3 @@
 - name: Deploy frontend from script
   ansible.builtin.script:
     cmd: front.sh {{ params.proxy_ip }} {{ params.proxy_port }} {{ params.frontend_port }}
-  async: 600
-  poll: 5
