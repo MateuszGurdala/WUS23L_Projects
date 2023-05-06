@@ -90,7 +90,8 @@ for VM in $VIRTUAL_MACHINES; do
             --private-ip-address $VM_PRIVATE_IP \
             --size $VM_SIZE \
             --subnet $VM_SUBNET \
-            --vnet-name $VNET_NAME
+            --vnet-name $VNET_NAME \
+            --no-wait
     fi
 
     if [ ! "$VM_PUBLIC_IP" ]; then
@@ -105,6 +106,7 @@ for VM in $VIRTUAL_MACHINES; do
             --private-ip-address $VM_PRIVATE_IP \
             --size $VM_SIZE \
             --subnet $VM_SUBNET \
-            --vnet-name $VNET_NAME
+            --vnet-name $VNET_NAME \
+            --no-wait
     fi
 done
