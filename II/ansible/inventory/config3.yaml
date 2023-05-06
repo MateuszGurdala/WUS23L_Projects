@@ -1,0 +1,32 @@
+all:
+  hosts:
+    front:
+      ansible_host: 10.0.1.4
+      params:
+        proxy_ip: 20.234.26.42
+        proxy_port: "9001"
+        frontend_port: "9000"
+        backend_ip: 10.0.2.5
+        backend_port: "9000"
+    db:
+      ansible_host: 10.0.3.6
+      params:
+        database_port: "3306"
+    slave:
+      ansible_host: 10.0.3.7
+      params:
+        database_port: "3306"
+        slave_port: "3305"
+        database_ip: 10.0.3.6
+    backslavemaster:
+      ansible_host: 10.0.2.5
+      params:
+        database_ip: 10.0.3.6
+        database_port: "3306"
+        slave_ip: 10.0.3.7
+        slave_port: "3305"
+        backend_port: "9000"
+  vars:
+    ansible_user: mateusz
+    ansible_ssh_private_key_file: ~/.ssh/id_rsa
+    ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -o StrictHostKeyChecking=no -W %h:%p -i ~/.ssh/id_rsa mateusz@20.234.26.42"

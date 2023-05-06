@@ -1,0 +1,20 @@
+---
+- hosts: all
+  become: true
+
+- hosts: front
+  roles:
+    - ../roles/frontend
+    - ../roles/reverseproxy
+
+- hosts: backslavemaster
+  roles:
+    - ../roles/backendslavemaster
+
+- hosts: db
+  roles:
+    - ../roles/database
+
+- hosts: slave
+  roles:
+    - ../roles/databaseslave
