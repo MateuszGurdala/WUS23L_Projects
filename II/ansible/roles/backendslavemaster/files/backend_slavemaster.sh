@@ -32,4 +32,4 @@ sudo sed -i 's/username=.*/username=pc/' src/main/resources/application-mysql.pr
 sudo sed -i 's/password=.*/password=petclinic/' src/main/resources/application-mysql.properties
 
 #Run backend
-sudo ./mvnw spring-boot:run &
+tmux new-session -d "sudo ./mvnw spring-boot:run"
