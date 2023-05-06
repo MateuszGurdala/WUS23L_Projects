@@ -2,3 +2,5 @@
 - name: Deploy reverse proxy from script
   ansible.builtin.script:
     cmd: frontend_reverse_proxy.sh {{ params.proxy_port }} {{ params.backend_ip }} {{ params.backend_port }}
+  async: 600
+  poll: 5

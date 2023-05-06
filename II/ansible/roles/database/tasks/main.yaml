@@ -2,3 +2,5 @@
 - name: Deploy database from script
   ansible.builtin.script:
     cmd: database.sh {{ params.database_port }}
+  async: 600
+  poll: 5
