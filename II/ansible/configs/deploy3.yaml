@@ -17,4 +17,4 @@
 
 - hosts: slave
   roles:
-    - ../roles/databaseslave
+    - ../roles/slave
