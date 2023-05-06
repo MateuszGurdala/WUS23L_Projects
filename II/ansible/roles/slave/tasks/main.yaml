@@ -1,0 +1,4 @@
+---
+- name: Deploy slave database from script
+  ansible.builtin.script:
+    cmd: database.sh {{ params.slave_port }} {{ params.database_port }} {{ params.database_ip }}
