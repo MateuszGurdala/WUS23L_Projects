@@ -11,19 +11,19 @@ get_config_files() {
     2)
         export VM_CONFIG="../../vm/configs/config2.json"
         export INVENTORY="../inventory/config2.yaml"
-        export INVENTORY_FILE="config2.json"
+        export INVENTORY_FILE="config2.yaml"
         export PLAYBOOK_FILE="deploy2.yaml"
         ;;
     3)
         export VM_CONFIG="../../vm/configs/config3.json"
         export INVENTORY="../inventory/config3.yaml"
-        export INVENTORY_FILE="config3.json"
+        export INVENTORY_FILE="config3.yaml"
         export PLAYBOOK_FILE="deploy3.yaml"
         ;;
     5)
         export VM_CONFIG="../../vm/configs/config5.json"
         export INVENTORY="../inventory/config5.yaml"
-        export INVENTORY_FILE="config5.json"
+        export INVENTORY_FILE="config5.yaml"
         export PLAYBOOK_FILE="deploy5.yaml"
         ;;
     *)
@@ -51,8 +51,14 @@ get_host() {
     DB)
         export HOST="db"
         ;;
+    Slave)
+        export HOST="slave"
+        ;;
+    BackendSlaveMaster)
+        export HOST="backslavemaster"
+        ;;
     *)
-        echo "Invalid config number"
+        echo "VM name could not be translated."
         exit 1
         ;;
     esac
