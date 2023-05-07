@@ -139,44 +139,125 @@
 	],
 	"virtual_machines": [
 		{
-			"name": "Front",
+			"name": "Frontend",
 			"image": "UbuntuLTS",
 			"subnet": "SubnetFront",
 			"ip_address": {
 				"public": "FrontEndIP",
 				"private": "10.0.1.4"
 			},
-			"size": "Standard_DS1_v2"
+			"size": "Standard_DS1_v2",
+			"params": [
+				{
+					"name": "proxy_ip",
+					"value": "",
+					"command": "get_public_ip.sh"
+				},
+				{
+					"name": "proxy_port",
+					"value": "9001"
+				},
+				{
+					"name": "frontend_port",
+					"value": "9000"
+				},
+				{
+					"name": "backend_ip",
+					"value": "10.0.2.5"
+				},
+				{
+					"name": "backend_port",
+					"value": "9000"
+				}
+			]
 		},
 		{
-			"name": "Loadbalancer",
+			"name": "LoadBalancer",
 			"image": "UbuntuLTS",
 			"subnet": "SubnetLoad",
 			"ip_address": {
 				"public": "",
 				"private": "10.0.5.8"
 			},
-			"size": "Standard_DS1_v2"
+			"size": "Standard_DS1_v2",
+			"params": [
+				{
+					"name": "balancer_port",
+					"value": "9000"
+				},
+				{
+					"name": "backend_1_ip_port",
+					"value": "10.0.2.5:9000"
+				},
+				{
+					"name": "backend_2_ip_port",
+					"value": "10.0.4.7:9000"
+				}
+			]
 		},
 		{
-			"name": "Backend1",
+			"name": "BackendSlaveMaster",
 			"image": "UbuntuLTS",
 			"subnet": "SubnetBack1",
 			"ip_address": {
 				"public": "",
 				"private": "10.0.2.5"
 			},
-			"size": "Standard_B1s"
+			"size": "Standard_B1s",
+			"params": [
+				{
+					"name": "database_ip",
+					"value": "10.0.3.6"
+				},
+				{
+					"name": "database_port",
+					"value": "3306"
+				},
+				{
+					"name": "slave_ip",
+					"value": "10.0.3.7"
+				},
+				{
+					"name": "slave_port",
+					"value": "3305"
+				},
+				{
+					"name": "backend_port",
+					"value": "9000"
+				}
+			]
 		},
 		{
-			"name": "Backend2",
+			"name": "BackendSlaveMaster2",
 			"image": "UbuntuLTS",
 			"subnet": "SubnetBack2",
 			"ip_address": {
 				"public": "",
 				"private": "10.0.4.7"
 			},
-			"size": "Standard_B1s"
+			"size": "Standard_B1s",
+			"params": [
+				{
+					"name": "database_ip",
+					"value": "10.0.3.6"
+				},
+				{
+					"name": "database_port",
+					"value": "3306"
+				},
+				{
+					"name": "slave_ip",
+					"value": "10.0.3.7"
+				},
+				{
+					"name": "slave_port",
+					"value": "3305"
+				},
+				{
+					"name": "backend_port",
+					"value": "9000"
+				}
+			]
 		},
 		{
 			"name": "DB",
@@ -186,17 +267,37 @@
 				"public": "",
 				"private": "10.0.3.6"
 			},
-			"size": "Standard_B1s"
+			"size": "Standard_B1s",
+			"params": [
+				{
+					"name": "database_port",
+					"value": "3306"
+				}
+			]
 		},
 		{
-			"name": "DB_slave",
+			"name": "Slave",
 			"image": "UbuntuLTS",
 			"subnet": "SubnetDB",
 			"ip_address": {
 				"public": "",
 				"private": "10.0.3.7"
 			},
-			"size": "Standard_B1s"
+			"size": "Standard_B1s",
+			"params": [
+				{
+					"name": "slave_port",
+					"value": "3305"
+				},
+				{
+					"name": "database_port",
+					"value": "3306"
+				},
+				{
+					"name": "database_ip",
+					"value": "10.0.3.6"
+				}
+			]
 		}
 	]
 }
