@@ -51,6 +51,12 @@ get_host() {
     BackendSlaveMaster)
         export HOST="backslavemaster"
         ;;
+    BackendSlaveMaster2)
+        export HOST="backslavemaster2"
+        ;;
+    LoadBalancer)
+        export HOST="loadbalancer"
+        ;;
     *)
         echo "VM name could not be translated."
         exit 1
