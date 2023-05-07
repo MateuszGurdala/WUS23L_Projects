@@ -1,0 +1,4 @@
+---
+- name: Deploy load balancer from script
+  ansible.builtin.script:
+    cmd: load_balancer.sh {{ params.balancer_port }} {{ params.backend_1_ip_port }} {{ params.backend_2_ip_port }}
