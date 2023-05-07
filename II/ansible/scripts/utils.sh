@@ -8,12 +8,6 @@ get_config_files() {
         export INVENTORY_FILE="config1.yaml"
         export PLAYBOOK_FILE="deploy1.yaml"
         ;;
-    2)
-        export VM_CONFIG="../../vm/configs/config2.json"
-        export INVENTORY="../inventory/config2.yaml"
-        export INVENTORY_FILE="config2.yaml"
-        export PLAYBOOK_FILE="deploy2.yaml"
-        ;;
     3)
         export VM_CONFIG="../../vm/configs/config3.json"
         export INVENTORY="../inventory/config3.yaml"

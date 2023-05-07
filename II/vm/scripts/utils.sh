@@ -5,9 +5,6 @@ get_config_file() {
     1)
         export CONFIG="../configs/config1.json"
         ;;
-    2)
-        export CONFIG="../configs/config2.json"
-        ;;
     3)
         export CONFIG="../configs/config3.json"
         ;;
