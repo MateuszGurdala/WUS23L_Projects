@@ -3,10 +3,10 @@ all:
     front:
       ansible_host: 10.0.1.4
       params:
-        proxy_ip: 68.219.236.147
+        proxy_ip: 20.223.241.44
         proxy_port: "9001"
         frontend_port: "9000"
-        backend_ip: 10.0.2.5
+        backend_ip: 10.0.5.8
         backend_port: "9000"
     db:
       ansible_host: 10.0.3.6
@@ -43,4 +43,4 @@ all:
   vars:
     ansible_user: mateusz
     ansible_ssh_private_key_file: ~/.ssh/id_rsa
-    ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -o StrictHostKeyChecking=no -W %h:%p -i ~/.ssh/id_rsa mateusz@68.219.236.147"
+    ansible_ssh_common_args: -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null -o ProxyCommand="ssh -o StrictHostKeyChecking=no -W %h:%p -i ~/.ssh/id_rsa mateusz@20.223.241.44"

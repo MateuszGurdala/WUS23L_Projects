@@ -8,10 +8,8 @@ sudo apt update
 sudo apt upgrade -y
 sudo apt install -y nginx
 
-cd /home
-
 # Create an Nginx configuration file in the current directory
-cat > loadbalancer.conf << EOL
+cat >loadbalancer.conf <<EOL
 upstream backend {
     server $BACKEND_1_IP_PORT;
     server $BACKEND_2_IP_PORT;
