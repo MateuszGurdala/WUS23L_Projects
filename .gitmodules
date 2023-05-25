@@ -1,0 +1,3 @@
+[submodule "III/III/spring-petclinic-cloud"]
+	path = III/III/spring-petclinic-cloud
+	url = https://github.com/spring-petclinic/spring-petclinic-cloud.git
