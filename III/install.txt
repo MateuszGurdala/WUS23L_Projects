@@ -1,0 +1,3 @@
+zainstalowac helm https://helm.sh/docs/intro/install/
+zainstalowac kubectl i polaczyc z azure https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli
+
