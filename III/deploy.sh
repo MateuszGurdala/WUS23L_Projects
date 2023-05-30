@@ -1,7 +1,7 @@
 #!/bin/bash
 
 RESOURCE_GROUP_NAME="WUS_LAB3"
-CLUSTER_NAME="WUSk82"
+CLUSTER_NAME="WUS"
 
 # create resource group
 az group create --name $RESOURCE_GROUP_NAME --location westeurope
